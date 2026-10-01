@@ -15,5 +15,16 @@
     ],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
+    },
+    "chat.tools.terminal.autoApprove": {
+        "yarn typecheck": true,
+        "yarn workspace @boilerplate/frontend typecheck": true,
+        "yarn workspace @boilerplate/backend typecheck": true,
+        "yarn lint": true,
+        "yarn format:check": true,
+        "yarn test": true,
+        "yarn test:api": true,
+        "yarn test:e2e": true,
+        "yarn build": true
     }
 }
