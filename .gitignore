@@ -1,0 +1,13 @@
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+node_modules/
+dist/
+coverage/
+tests/reports/
+tests/results/
+.env
+.env.*
+!.env.example
