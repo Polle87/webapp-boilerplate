@@ -63,14 +63,6 @@ export default [
         },
     },
     {
-        files: ['apps/frontend/vite.config.ts'],
-        languageOptions: {
-            globals: {
-                ...globals.node,
-            },
-        },
-    },
-    {
         files: ['apps/frontend/src/**/*.{ts,tsx,vue}'],
         languageOptions: {
             globals: {
