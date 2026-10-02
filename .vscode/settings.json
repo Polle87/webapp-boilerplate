@@ -18,13 +18,22 @@
     },
     "chat.tools.terminal.autoApprove": {
         "yarn typecheck": true,
+        "yarn.cmd typecheck": true,
         "yarn workspace @boilerplate/frontend typecheck": true,
+        "yarn.cmd workspace @boilerplate/frontend typecheck": true,
         "yarn workspace @boilerplate/backend typecheck": true,
+        "yarn.cmd workspace @boilerplate/backend typecheck": true,
         "yarn lint": true,
+        "yarn.cmd lint": true,
         "yarn format:check": true,
+        "yarn.cmd format:check": true,
         "yarn test": true,
+        "yarn.cmd test": true,
         "yarn test:api": true,
+        "yarn.cmd test:api": true,
         "yarn test:e2e": true,
-        "yarn build": true
+        "yarn.cmd test:e2e": true,
+        "yarn build": true,
+        "yarn.cmd build": true
     }
 }
