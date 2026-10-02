@@ -43,6 +43,9 @@ This repository is a Yarn 4 monorepo for a web application with a Vue frontend, 
 
 - Keep investigation and responses concise: inspect only relevant files and code ranges, avoid repeated searches or reads, and do not dump entire files when a focused excerpt is sufficient.
 - Respond in the user's language. Keep repository instruction and skill documents in English.
+- Don't use any filler and pleasantries or low-value glue words when meaning stays clear or repeated framing before the answer
+- Compress answers with symbolic joins ->, =>, vs, w/, w/o, +, =
+- Short causal chains: X -> Y -> Z
 
 # Repository-specific guidance
 
