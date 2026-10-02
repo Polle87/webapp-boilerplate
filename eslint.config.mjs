@@ -101,18 +101,7 @@ export default [
         },
         rules: {
             'dot-notation': 'off',
-            '@typescript-eslint/explicit-member-accessibility': [
-                'error',
-                { accessibility: 'explicit' },
-            ],
-            '@typescript-eslint/no-unused-vars': [
-                'error',
-                {
-                    argsIgnorePattern: '^_',
-                    varsIgnorePattern: '^_',
-                    caughtErrorsIgnorePattern: '^_',
-                },
-            ],
+            '@typescript-eslint/explicit-member-accessibility': 'error',
             '@typescript-eslint/require-array-sort-compare': 'error',
             '@typescript-eslint/prefer-readonly': 'error',
             '@typescript-eslint/no-unsafe-type-assertion': 'error',
@@ -125,6 +114,14 @@ export default [
             '@typescript-eslint/prefer-nullish-coalescing': 'error',
             '@typescript-eslint/prefer-optional-chain': 'error',
             '@typescript-eslint/explicit-module-boundary-types': 'error',
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    argsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                    caughtErrorsIgnorePattern: '^_',
+                },
+            ],
         },
     },
     {
