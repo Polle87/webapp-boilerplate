@@ -1,20 +1,20 @@
-# Webapp Boilerplate
+# Web App Boilerplate
 
-Boilerplate für neue Webanwendungen mit getrenntem Frontend und Backend. Das Repository bringt eine schlanke Entwicklungsumgebung, gemeinsame TypeScript-Typen sowie API- und Browser-Tests mit. Komponenten und Beispieldomänen lassen sich direkt durch die Anforderungen des nächsten Projekts ersetzen.
+A boilerplate for new web applications with a separate frontend and backend. This repository provides a lightweight development setup, shared TypeScript types, and API and browser tests. Replace the example components and domain logic with the requirements of your next project.
 
-## Technologien
+## Technologies
 
-- **Frontend:** Vue 3, TypeScript, Vite 8 und Tailwind CSS 4
-- **Backend:** Node.js 24, Fastify 5 und TypeScript
-- **Gemeinsamer Code:** TypeScript-Workspace für geteilte Typen und Verträge
-- **Monorepo:** Yarn 4 Workspaces
-- **Qualität:** ESLint 10, Prettier 3 und TypeScript-Strict-Mode
-- **Tests:** Playwright für API- und End-to-End-Tests
+- **Frontend:** Vue 3, TypeScript, Vite 8, and Tailwind CSS 4
+- **Backend:** Node.js 24, Fastify 5, and TypeScript
+- **Shared code:** TypeScript workspace for shared types and contracts
+- **Monorepo:** Yarn 4 workspaces
+- **Code quality:** ESLint 10, Prettier 3, and TypeScript strict mode
+- **Testing:** Playwright for API and end-to-end tests
 
-## Voraussetzungen
+## Requirements
 
 - Node.js `>=24 <25`
-- Yarn `4.18.1` (im Repository über Corepack und `.yarn/releases` festgelegt)
+- Yarn `4.18.1` (pinned in the repository through Corepack and `.yarn/releases`)
 
 ## Installation
 
@@ -23,65 +23,65 @@ corepack enable
 yarn install
 ```
 
-Beim ersten End-to-End-Testlauf muss gegebenenfalls der Playwright-Browser installiert werden:
+You may need to install the Playwright browser before running end-to-end tests for the first time:
 
 ```sh
 yarn playwright install chromium
 ```
 
-## Entwicklung
+## Development
 
 ```sh
 yarn dev
 ```
 
-Der Befehl startet Frontend und Backend parallel:
+This starts the frontend and backend in parallel:
 
 - Frontend: http://localhost:3000
 - Backend: http://localhost:3001
-- Health-Endpoint: http://localhost:3001/health
+- Health endpoint: http://localhost:3001/health
 
-Vite leitet Anfragen an `/api/*` an das Backend weiter und entfernt dabei das Präfix `/api`. Beispiel: `GET /api/health` wird zu `GET /health` auf dem Backend.
+Vite proxies requests to `/api/*` to the backend and removes the `/api` prefix. For example, `GET /api/health` is forwarded to `GET /health` on the backend.
 
-Es werden derzeit keine Umgebungsvariablen benötigt. Das Backend kann mit `PORT` auf einem anderen Port gestartet werden; standardmäßig verwendet es `3001`.
+No environment variables are currently required. Set `PORT` to run the backend on a different port; the default is `3001`.
 
-## Befehle
+## Commands
 
-| Befehl                 | Zweck                                             |
-| ---------------------- | ------------------------------------------------- |
-| `yarn dev`             | Frontend und Backend im Entwicklungsmodus starten |
-| `yarn build`           | Alle Workspaces bauen                             |
-| `yarn typecheck`       | TypeScript-Prüfung für alle Workspaces ausführen  |
-| `yarn lint`            | ESLint ausführen                                  |
-| `yarn lint:fix`        | Behebbare ESLint-Probleme automatisch korrigieren |
-| `yarn format`          | Dateien mit Prettier formatieren                  |
-| `yarn format:check`    | Formatierung prüfen                               |
-| `yarn test`            | API- und End-to-End-Tests ausführen               |
-| `yarn test:api`        | API-Tests gegen das Backend ausführen             |
-| `yarn test:e2e`        | Browser- und API-Proxy-Tests ausführen            |
-| `yarn test:api:report` | API-Testbericht öffnen                            |
-| `yarn test:e2e:report` | End-to-End-Testbericht öffnen                     |
+| Command                | Purpose                                            |
+| ---------------------- | -------------------------------------------------- |
+| `yarn dev`             | Start the frontend and backend in development mode |
+| `yarn build`           | Build all workspaces                               |
+| `yarn typecheck`       | Type-check all workspaces                          |
+| `yarn lint`            | Run ESLint                                         |
+| `yarn lint:fix`        | Automatically fix fixable ESLint issues            |
+| `yarn format`          | Format files with Prettier                         |
+| `yarn format:check`    | Check formatting                                   |
+| `yarn test`            | Run API and end-to-end tests                       |
+| `yarn test:api`        | Run API tests against the backend                  |
+| `yarn test:e2e`        | Run browser and API proxy tests                    |
+| `yarn test:api:report` | Open the API test report                           |
+| `yarn test:e2e:report` | Open the end-to-end test report                    |
 
-Die Playwright-Konfiguration startet die jeweils benötigten Server automatisch. API-Tests verwenden Chromium nicht; für End-to-End-Tests wird Chromium benötigt. Testberichte und Ergebnisse landen unter `tests/reports/` beziehungsweise `tests/results/`.
+The Playwright configuration starts the required servers automatically. API tests do not use Chromium; Chromium is required for end-to-end tests. Test reports and results are written to `tests/reports/` and `tests/results/`.
 
-## Projektstruktur
+## Project structure
 
 ```text
 apps/
-  backend/    Fastify-API und esbuild-Build
-  frontend/   Vue-Anwendung und Vite-Konfiguration
-  shared/     Gemeinsame TypeScript-Typen und Verträge
+  backend/    Fastify API and esbuild build
+  frontend/   Vue application and Vite configuration
+  shared/     Shared TypeScript types and contracts
 tests/
-  api/        API-Tests
-  e2e/        Browser- und Proxy-Tests
+  api/        API tests
+  e2e/        Browser and proxy tests
 ```
 
-## Als Vorlage verwenden
+## Using this as a template
 
-1. Repository kopieren oder forken.
-2. `name`-Werte und Workspace-Imports mit dem neuen Projektnamen aktualisieren, insbesondere `@boilerplate/shared`.
-3. Die Beispielansicht in `apps/frontend/src/App.vue` und den Beispielendpunkt in `apps/backend/src/index.ts` durch die eigene Anwendung ersetzen.
-4. Gemeinsame API-Verträge und Typen in `apps/shared/src/` pflegen.
-5. Passende Tests in `tests/api/` und `tests/e2e/` ergänzen.
+1. Copy or fork the repository.
+2. Update the `name` values and workspace imports for your project, especially `@boilerplate/shared`.
+3. Replace the example view in `apps/frontend/src/App.vue` and the example endpoint in `apps/backend/src/index.ts` with your application.
+4. Maintain shared API contracts and types in `apps/shared/src/`.
+5. Add relevant tests in `tests/api/` and `tests/e2e/`.
 
-Der Health-Endpoint unter `/health` eignet sich als einfacher Ausgangspunkt für Monitoring und Verbindungsprüfungen.
+The `/health` endpoint is a simple starting point for monitoring and connection checks.

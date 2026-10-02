@@ -1,18 +1,18 @@
 ---
 name: quality-checks
-description: Wähle und führe passende Qualitätsprüfungen für Änderungen in diesem Vue-, Fastify- und TypeScript-Monorepo aus. Verwende diesen Skill vor dem Abschluss einer Implementierung oder wenn gezielt nach Tests, Typechecks, Lint oder Build gefragt wird.
+description: Select and run appropriate quality checks for changes in this Vue, Fastify, and TypeScript monorepo. Use this skill before completing an implementation or when specifically asked about tests, typechecks, linting, or builds.
 ---
 
-# Qualitätsprüfungen
+# Quality checks
 
-1. Ermittle anhand der geänderten Dateien, welche Workspaces und welches Verhalten betroffen sind.
-2. Führe zuerst den passenden Typecheck aus:
+1. Determine which workspaces and behaviors are affected by the changed files.
+2. Run the appropriate typecheck first:
     - Frontend: `yarn workspace @boilerplate/frontend typecheck`
     - Backend: `yarn workspace @boilerplate/backend typecheck`
-    - Gesamtes Repository oder gemeinsame Typen: `yarn typecheck`
-3. Bei geänderten API-Verträgen oder Backend-Verhalten führe `yarn test:api` aus. Bei geänderter Oberfläche oder Proxy-Verhalten führe `yarn test:e2e` aus. Bei Tests in beiden Bereichen führe beide Suites aus.
-4. Führe `yarn lint` aus, wenn TypeScript, Vue, JavaScript oder Tests geändert wurden. Verwende `yarn format:check`, wenn Formatierung Teil der Änderung oder Projektvorgabe ist.
-5. Führe `yarn build` aus, wenn Änderungen Build-Konfiguration, Workspace-Abhängigkeiten oder mehrere Pakete betreffen.
-6. Melde exakt, welche Befehle liefen und ob sie erfolgreich waren. Falls eine Prüfung fehlschlägt, unterscheide klar zwischen einem durch die Änderung verursachten Problem und einem bereits vorhandenen Fehler.
+    - Entire repository or shared types: `yarn typecheck`
+3. For changes to API contracts or backend behavior, run `yarn test:api`. For changes to the UI or proxy behavior, run `yarn test:e2e`. If tests in both areas are affected, run both suites.
+4. Run `yarn lint` when TypeScript, Vue, JavaScript, or tests have changed. Use `yarn format:check` when formatting is part of the change or a project requirement.
+5. Run `yarn build` when changes affect build configuration, workspace dependencies, or multiple packages.
+6. Report exactly which commands were run and whether they succeeded. If a check fails, clearly distinguish a problem caused by the changes from a pre-existing failure.
 
-Führe nicht pauschal jede Suite für eine reine Dokumentationsänderung aus. End-to-End-Tests benötigen gegebenenfalls Chromium; installiere es nur, wenn der Testlauf daran scheitert und die Umgebung es noch nicht hat: `yarn playwright install chromium`.
+Do not run every suite indiscriminately for documentation-only changes. End-to-end tests may require Chromium; install it only if the test run fails because it is unavailable: `yarn playwright install chromium`.

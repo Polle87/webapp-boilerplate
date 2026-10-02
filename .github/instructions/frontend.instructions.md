@@ -1,13 +1,13 @@
 ---
-name: Vue-Frontend
-description: Regeln für Vue-Komponenten, Frontend-TypeScript und Styles.
+name: Vue Frontend
+description: Guidelines for Vue components, frontend TypeScript, and styles.
 applyTo: 'apps/frontend/**/*'
 ---
 
 # Frontend
 
-- Verwende Vue 3 und TypeScript passend zu den vorhandenen Komponenten und der bestehenden Composition-API-Nutzung.
-- Halte UI, Zustandslogik und API-Aufrufe nachvollziehbar getrennt; führe kein zusätzliches State-Management ein, solange die vorhandenen Mittel ausreichen.
-- Berücksichtige Lade-, Fehler- und Leerzustände, wenn eine Oberfläche Daten lädt oder verändert.
-- Bewahre responsive Bedienbarkeit und semantische HTML-Elemente; interaktive Elemente müssen per Tastatur erreichbar und sinnvoll beschriftet sein.
-- Prüfe Frontend-Änderungen mindestens mit `yarn workspace @boilerplate/frontend typecheck`; ergänze passende End-to-End-Tests, wenn sich sichtbares Verhalten ändert.
+- Use Vue 3 and TypeScript in line with the existing components and Composition API usage.
+- Keep UI, state logic, and API calls clearly separated; do not introduce additional state management while the existing tools are sufficient.
+- Account for loading, error, and empty states when the UI loads or changes data.
+- Preserve responsive usability and semantic HTML; interactive elements must be keyboard-accessible and clearly labeled.
+- At minimum, check frontend changes with `yarn workspace @boilerplate/frontend typecheck`; add appropriate end-to-end tests when visible behavior changes.

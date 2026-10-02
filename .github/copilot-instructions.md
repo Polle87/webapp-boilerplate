@@ -1,23 +1,23 @@
-# Projektkontext
+# Project context
 
-Dieses Repository ist ein Yarn-4-Monorepo für eine Webanwendung mit Vue-Frontend, Fastify-Backend und gemeinsamem TypeScript-Paket. Laufzeit ist Node.js 24. Halte Änderungen klein und orientiere dich an den bestehenden Mustern im jeweils betroffenen Workspace.
+This repository is a Yarn 4 monorepo for a web application with a Vue frontend, Fastify backend, and shared TypeScript package. The runtime is Node.js 24. Keep changes small and follow the existing patterns in the affected workspace.
 
-# Verbindliche Arbeitsweise
+# Required workflow
 
-- Lies vor Änderungen die betroffenen Dateien und nahegelegene Tests oder vergleichbare Implementierungen.
-- Ändere nur, was für die Aufgabe nötig ist. Führe keine unabhängigen Refactorings oder zusätzlichen Abhängigkeiten ohne nachvollziehbaren Grund ein.
-- Behalte gemeinsam genutzte Typen und API-Verträge in `apps/shared/`; vermeide doppelte Definitionen in Frontend und Backend.
-- Behandle Eingaben, Fehlerfälle und vertrauliche Werte ausdrücklich. Hinterlege keine Secrets im Quellcode.
-- Ergänze oder passe Tests an, wenn sich Verhalten ändert. Behaupte nicht, Prüfungen ausgeführt zu haben, die tatsächlich nicht gelaufen sind.
-- Führe nach Änderungen passende Prüfungen aus. Nutze zuerst den engsten relevanten Test oder Typecheck; bei Änderungen mit größerer Auswirkung zusätzlich `yarn lint`, `yarn build` oder die passenden Playwright-Tests.
+- Before making changes, read the affected files and nearby tests or comparable implementations.
+- Change only what is needed for the task. Do not introduce unrelated refactoring or additional dependencies without a clear reason.
+- Keep shared types and API contracts in `apps/shared/`; avoid duplicate definitions in the frontend and backend.
+- Handle inputs, error cases, and sensitive values explicitly. Do not store secrets in source code.
+- Add or update tests when behavior changes. Do not claim to have run checks that were not actually run.
+- Run appropriate checks after making changes. Start with the narrowest relevant test or typecheck; for broader changes, also run `yarn lint`, `yarn build`, or the appropriate Playwright tests.
 
-# Projektbefehle
+# Project commands
 
-- `yarn dev` startet Frontend und Backend.
-- `yarn typecheck` prüft alle Workspaces; gezielt: `yarn workspace @boilerplate/frontend typecheck` oder `yarn workspace @boilerplate/backend typecheck`.
-- `yarn lint` und `yarn format:check` prüfen Codequalität und Formatierung.
-- `yarn test:api` führt API-Tests aus; `yarn test:e2e` führt Browser- und Proxy-Tests aus.
-- `yarn build` baut alle Workspaces.
-- Für End-to-End-Tests kann Chromium erforderlich sein: `yarn playwright install chromium`.
+- `yarn dev` starts the frontend and backend.
+- `yarn typecheck` checks all workspaces; to target a workspace, use `yarn workspace @boilerplate/frontend typecheck` or `yarn workspace @boilerplate/backend typecheck`.
+- `yarn lint` and `yarn format:check` check code quality and formatting.
+- `yarn test:api` runs API tests; `yarn test:e2e` runs browser and proxy tests.
+- `yarn build` builds all workspaces.
+- Chromium may be required for end-to-end tests: `yarn playwright install chromium`.
 
-Weitere Hinweise zu Frontend, Backend und Tests stehen in den passenden Dateien unter `.github/instructions/`.
+Further guidance for the frontend, backend, and tests is available in the relevant files under `.github/instructions/`.
