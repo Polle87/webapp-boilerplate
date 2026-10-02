@@ -1,3 +1,3 @@
-export type HealthStatus = {
+export interface HealthStatus {
     status: 'ok';
-};
+}

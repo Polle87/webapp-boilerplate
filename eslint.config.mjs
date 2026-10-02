@@ -1,32 +1,37 @@
 import eslint from '@eslint/js';
 import jsonc from 'eslint-plugin-jsonc';
+import playwright from 'eslint-plugin-playwright';
 import prettier from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 import vue from 'eslint-plugin-vue';
+import vuejsAccessibility from 'eslint-plugin-vuejs-accessibility';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+
+const typedFiles = ['**/*.{ts,tsx,mts,cts,vue}'];
 
 export default [
     {
         ignores: ['**/dist/**', '**/coverage/**', '**/tests/reports/**', '**/tests/results/**'],
     },
     eslint.configs.recommended,
-    ...tseslint.configs.recommended,
+    ...tseslint.configs.strictTypeChecked.map((config) => ({
+        ...config,
+        files: typedFiles,
+    })),
+    ...tseslint.configs.stylisticTypeChecked.map((config) => ({
+        ...config,
+        files: typedFiles,
+    })),
     ...vue.configs['flat/recommended'],
+    ...vuejsAccessibility.configs['flat/recommended'],
     ...jsonc.configs['flat/recommended-with-jsonc'],
     {
         files: ['**/*.{js,mjs,cjs,ts,tsx,vue}'],
-        languageOptions: {
-            globals: {
-                ...globals.browser,
-                ...globals.node,
-            },
-        },
         rules: {
             'prettier/prettier': 'error',
             eqeqeq: ['error', 'always'],
             curly: ['error', 'all'],
-            'dot-notation': 'error',
             'no-constant-binary-expression': 'error',
             'no-duplicate-imports': 'error',
             'no-eval': 'error',
@@ -37,16 +42,52 @@ export default [
             'no-param-reassign': ['error', { props: false }],
             'prefer-promise-reject-errors': 'error',
             'no-console': 'warn',
-            'vue/multi-word-component-names': 'off',
+            'vue/multi-word-component-names': ['error', { ignores: ['App'] }],
         },
         plugins: {
             prettier: prettierPlugin,
         },
     },
     {
-        files: ['apps/frontend/**/*.{ts,tsx,vue}'],
+        files: [
+            'eslint.config.{js,mjs,cjs}',
+            '**/*.config.{js,mjs,cjs,ts,mts,cts}',
+            'apps/backend/**/*.{js,mjs,cjs,ts,tsx,mts,cts}',
+            'tests/api/**/*.{js,mjs,cjs,ts,tsx,mts,cts}',
+            'tests/playwright.*.config.ts',
+        ],
+        languageOptions: {
+            globals: {
+                ...globals.node,
+            },
+        },
+    },
+    {
+        files: ['apps/frontend/vite.config.ts'],
+        languageOptions: {
+            globals: {
+                ...globals.node,
+            },
+        },
+    },
+    {
+        files: ['apps/frontend/src/**/*.{ts,tsx,vue}'],
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+            },
+        },
         rules: {
             'no-alert': 'error',
+        },
+    },
+    {
+        files: ['tests/e2e/**/*.{js,mjs,cjs,ts,tsx,mts,cts}'],
+        languageOptions: {
+            globals: {
+                ...globals.node,
+                ...globals.browser,
+            },
         },
     },
     {
@@ -57,11 +98,7 @@ export default [
         },
     },
     {
-        files: [
-            'apps/backend/src/**/*.{ts,tsx}',
-            'apps/frontend/src/**/*.{ts,tsx,vue}',
-            'apps/shared/src/**/*.{ts,tsx}',
-        ],
+        files: typedFiles,
         languageOptions: {
             parserOptions: {
                 parser: tseslint.parser,
@@ -71,11 +108,11 @@ export default [
             },
         },
         rules: {
+            'dot-notation': 'off',
             '@typescript-eslint/explicit-member-accessibility': [
                 'error',
                 { accessibility: 'explicit' },
             ],
-            '@typescript-eslint/dot-notation': 'error',
             '@typescript-eslint/no-unused-vars': [
                 'error',
                 {
@@ -84,38 +121,23 @@ export default [
                     caughtErrorsIgnorePattern: '^_',
                 },
             ],
-            '@typescript-eslint/no-require-imports': 'error',
             '@typescript-eslint/require-array-sort-compare': 'error',
             '@typescript-eslint/prefer-readonly': 'error',
             '@typescript-eslint/no-unsafe-type-assertion': 'error',
-            '@typescript-eslint/await-thenable': 'error',
-            '@typescript-eslint/require-await': 'error',
+            '@typescript-eslint/strict-boolean-expressions': 'error',
             '@typescript-eslint/return-await': ['error', 'in-try-catch'],
             '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'error',
-            '@typescript-eslint/no-deprecated': 'error',
-            '@typescript-eslint/no-base-to-string': 'error',
             '@typescript-eslint/no-confusing-void-expression': 'error',
             '@typescript-eslint/no-unnecessary-template-expression': 'error',
             '@typescript-eslint/no-misused-spread': 'error',
             '@typescript-eslint/prefer-nullish-coalescing': 'error',
             '@typescript-eslint/prefer-optional-chain': 'error',
-            '@typescript-eslint/consistent-type-imports': 'error',
-            '@typescript-eslint/no-floating-promises': 'error',
-            '@typescript-eslint/no-misused-promises': 'error',
-            '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-            '@typescript-eslint/no-unnecessary-condition': 'error',
-            '@typescript-eslint/no-unsafe-assignment': 'error',
-            '@typescript-eslint/no-unsafe-member-access': 'error',
-            '@typescript-eslint/no-unsafe-call': 'error',
-            '@typescript-eslint/no-unsafe-argument': 'error',
-            '@typescript-eslint/no-unsafe-return': 'error',
-            '@typescript-eslint/strict-boolean-expressions': 'error',
             '@typescript-eslint/explicit-module-boundary-types': 'error',
-            '@typescript-eslint/switch-exhaustiveness-check': 'error',
-            '@typescript-eslint/no-unsafe-enum-comparison': 'error',
-            '@typescript-eslint/only-throw-error': 'error',
-            '@typescript-eslint/use-unknown-in-catch-callback-variable': 'error',
         },
+    },
+    {
+        ...playwright.configs['flat/recommended'],
+        files: ['tests/{api,e2e}/**/*.ts'],
     },
     {
         files: ['**/*.{json,jsonc,json5}'],
