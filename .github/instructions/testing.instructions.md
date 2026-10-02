@@ -1,12 +1,13 @@
 ---
 name: Playwright Tests
-description: Guidelines for API and end-to-end tests using Playwright.
+description: Playwright-specific guidance for API and end-to-end test behavior.
 applyTo: 'tests/**/*.ts'
 ---
 
-# Tests
+# Playwright tests
 
-- Write tests from the perspective of observable behavior and use Playwright's assertions and locator APIs.
-- Use API tests under `tests/api/` for backend contracts and end-to-end tests under `tests/e2e/` for browser behavior and the frontend proxy.
-- Avoid fixed waits and fragile selectors; prefer roles, accessible names, and explicit state checks.
-- After changing tests, run the appropriate suite: `yarn test:api` or `yarn test:e2e`.
+- Test observable behavior with Playwright's built-in assertions and locators rather than implementation details.
+- Place backend contract tests in `tests/api/`; place browser behavior and frontend proxy tests in `tests/e2e/`.
+- Prefer role- and label-based locators and explicit state assertions. Avoid fixed timeouts and brittle selectors.
+- Use the request fixture for API checks and page locators for browser interactions; assert response status and relevant payload or rendered state.
+- Run `yarn test:api` for API test changes and `yarn test:e2e` for browser or proxy test changes.
