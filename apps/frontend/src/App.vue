@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-const title = 'Boilerplate';
+const title = 'Boilerplate'
 </script>

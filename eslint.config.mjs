@@ -1,14 +1,14 @@
-import eslint from '@eslint/js';
-import jsonc from 'eslint-plugin-jsonc';
-import playwright from 'eslint-plugin-playwright';
-import prettier from 'eslint-config-prettier';
-import prettierPlugin from 'eslint-plugin-prettier';
-import vue from 'eslint-plugin-vue';
-import vuejsAccessibility from 'eslint-plugin-vuejs-accessibility';
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import eslint from '@eslint/js'
+import jsonc from 'eslint-plugin-jsonc'
+import playwright from 'eslint-plugin-playwright'
+import prettier from 'eslint-config-prettier'
+import prettierPlugin from 'eslint-plugin-prettier'
+import vue from 'eslint-plugin-vue'
+import vuejsAccessibility from 'eslint-plugin-vuejs-accessibility'
+import globals from 'globals'
+import tseslint from 'typescript-eslint'
 
-const typedFiles = ['**/*.{ts,tsx,mts,cts,vue}'];
+const typedFiles = ['**/*.{ts,tsx,mts,cts,vue}']
 
 export default [
     {
@@ -30,8 +30,8 @@ export default [
         files: ['**/*.{js,mjs,cjs,ts,tsx,vue}'],
         rules: {
             'prettier/prettier': 'error',
-            eqeqeq: ['error', 'always'],
-            curly: ['error', 'all'],
+            'eqeqeq': ['error', 'always'],
+            'curly': ['error', 'all'],
             'no-constant-binary-expression': 'error',
             'no-duplicate-imports': 'error',
             'no-eval': 'error',
@@ -138,4 +138,4 @@ export default [
         },
     },
     prettier,
-];
+]

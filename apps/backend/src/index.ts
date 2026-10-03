@@ -1,7 +1,7 @@
-import Fastify from 'fastify';
+import Fastify from 'fastify'
 
-const app = Fastify({ logger: true });
+const app = Fastify({ logger: true })
 
-app.get('/health', () => ({ status: 'ok' }));
+app.get('/health', () => ({ status: 'ok' }))
 
-await app.listen({ host: '0.0.0.0', port: Number(process.env.PORT ?? 3001) });
+await app.listen({ host: '0.0.0.0', port: Number(process.env.PORT ?? 3001) })

@@ -1,8 +1,8 @@
 /// <reference types="node" />
 
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test'
 
-const isCI = process.env.CI !== undefined && process.env.CI !== '';
+const isCI = process.env.CI !== undefined && process.env.CI !== ''
 
 export default defineConfig({
     testDir: '.',
@@ -44,4 +44,4 @@ export default defineConfig({
             timeout: 30_000,
         },
     ],
-});
+})
