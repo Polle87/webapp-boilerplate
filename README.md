@@ -54,8 +54,8 @@ No environment variables are currently required. Set `PORT` to run the backend o
 | `yarn typecheck`       | Type-check all workspaces                          |
 | `yarn lint`            | Run ESLint                                         |
 | `yarn lint:fix`        | Automatically fix fixable ESLint issues            |
-| `yarn format`          | Format files with Prettier                         |
-| `yarn format:check`    | Check formatting                                   |
+| `yarn format`          | Check formatting with Prettier                     |
+| `yarn format:fix`      | Format files with Prettier                        |
 | `yarn test`            | Run API and end-to-end tests                       |
 | `yarn test:api`        | Run API tests against the backend                  |
 | `yarn test:e2e`        | Run browser and API proxy tests                    |

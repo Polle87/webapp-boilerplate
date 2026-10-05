@@ -35,7 +35,7 @@ This repository is a Yarn 4 monorepo for a web application with a Vue frontend, 
 
 - Add or update relevant tests when behavior changes. Run the narrowest checks that cover the change, and report exactly what ran and whether it passed.
 - Choose checks based on the changed area; do not run every suite for documentation-only changes.
-- Use the repository scripts as appropriate: `yarn typecheck`, `yarn lint`, `yarn format:check`, `yarn test:api`, `yarn test:e2e`, and `yarn build`.
+- Use the repository scripts as appropriate: `yarn typecheck`, `yarn lint`, `yarn format`, `yarn test:api`, `yarn test:e2e`, and `yarn build`.
 - Use `yarn test:api` for backend/API behavior and `yarn test:e2e` for UI or proxy behavior. Run `yarn build` when build configuration, workspace dependencies, or multiple packages are affected.
 - End-to-end tests may require Chromium. Install it with `yarn playwright install chromium` only if a test run fails because it is unavailable.
 

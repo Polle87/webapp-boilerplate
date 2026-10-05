@@ -54,8 +54,8 @@ Es werden derzeit keine Umgebungsvariablen benötigt. Das Backend kann mit `PORT
 | `yarn typecheck`       | TypeScript-Prüfung für alle Workspaces ausführen  |
 | `yarn lint`            | ESLint ausführen                                  |
 | `yarn lint:fix`        | Behebbare ESLint-Probleme automatisch korrigieren |
-| `yarn format`          | Dateien mit Prettier formatieren                  |
-| `yarn format:check`    | Formatierung prüfen                               |
+| `yarn format`          | Formatierung mit Prettier prüfen                  |
+| `yarn format:fix`      | Dateien mit Prettier formatieren                  |
 | `yarn test`            | API- und End-to-End-Tests ausführen               |
 | `yarn test:api`        | API-Tests gegen das Backend ausführen             |
 | `yarn test:e2e`        | Browser- und API-Proxy-Tests ausführen            |

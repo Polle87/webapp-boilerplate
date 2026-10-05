@@ -31,7 +31,7 @@ Use the current branch's changes against `main` as the primary scope. Review the
     - UI or frontend proxy behavior: ensure relevant browser behavior is covered, then run `yarn test:e2e`.
     - If both API and browser behavior are affected, run both test suites.
     - Run `yarn lint` when TypeScript, Vue, JavaScript, or test files changed.
-    - Run `yarn format:check` when changed files are supported by Prettier.
+    - Run `yarn format` when changed files are supported by Prettier.
     - Run `yarn build` when build configuration, workspace dependencies, shared packages, or multiple workspaces are affected.
 
     Do not run unrelated suites for documentation-only changes. End-to-end tests may require Chromium; install it with `yarn playwright install chromium` only if a test fails because Chromium is unavailable.
