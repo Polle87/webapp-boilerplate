@@ -105,7 +105,6 @@ export default [
             '@typescript-eslint/require-array-sort-compare': 'error',
             '@typescript-eslint/prefer-readonly': 'error',
             '@typescript-eslint/no-unsafe-type-assertion': 'error',
-            '@typescript-eslint/strict-boolean-expressions': 'error',
             '@typescript-eslint/return-await': ['error', 'in-try-catch'],
             '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'error',
             '@typescript-eslint/no-confusing-void-expression': 'error',

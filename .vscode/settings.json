@@ -13,6 +13,9 @@
         "json",
         "jsonc"
     ],
+    "search.exclude": {
+        "**/yarn-*.cjs": true
+    },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
     },
