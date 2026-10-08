@@ -59,8 +59,7 @@ Es werden derzeit keine Umgebungsvariablen benötigt. Das Backend kann mit `PORT
 | `yarn test`            | API- und End-to-End-Tests ausführen               |
 | `yarn test:api`        | API-Tests gegen das Backend ausführen             |
 | `yarn test:e2e`        | Browser- und API-Proxy-Tests ausführen            |
-| `yarn test:api:report` | API-Testbericht öffnen                            |
-| `yarn test:e2e:report` | End-to-End-Testbericht öffnen                     |
+| `yarn test:report`     | Gemeinsamen Playwright-HTML-Bericht öffnen        |
 
 Die Playwright-Konfiguration startet die jeweils benötigten Server automatisch. API-Tests verwenden Chromium nicht; für End-to-End-Tests wird Chromium benötigt. Testberichte und Ergebnisse landen unter `tests/reports/` beziehungsweise `tests/results/`.
 

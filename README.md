@@ -55,12 +55,11 @@ No environment variables are currently required. Set `PORT` to run the backend o
 | `yarn lint`            | Run ESLint                                         |
 | `yarn lint:fix`        | Automatically fix fixable ESLint issues            |
 | `yarn format`          | Check formatting with Prettier                     |
-| `yarn format:fix`      | Format files with Prettier                        |
+| `yarn format:fix`      | Format files with Prettier                         |
 | `yarn test`            | Run API and end-to-end tests                       |
 | `yarn test:api`        | Run API tests against the backend                  |
 | `yarn test:e2e`        | Run browser and API proxy tests                    |
-| `yarn test:api:report` | Open the API test report                           |
-| `yarn test:e2e:report` | Open the end-to-end test report                    |
+| `yarn test:report`     | Open the combined Playwright HTML report           |
 
 The Playwright configuration starts the required servers automatically. API tests do not use Chromium; Chromium is required for end-to-end tests. Test reports and results are written to `tests/reports/` and `tests/results/`.
 
