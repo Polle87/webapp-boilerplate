@@ -5,6 +5,7 @@
 !.yarn/versions
 node_modules/
 dist/
+apps/backend/data/
 coverage/
 tests/reports/
 tests/results/

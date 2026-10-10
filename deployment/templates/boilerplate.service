@@ -1,0 +1,25 @@
+[Unit]
+Description=Boilerplate backend API
+After=network.target
+
+[Service]
+Type=simple
+User=boilerplate
+Group=boilerplate
+WorkingDirectory=/var/www/boilerplate/server
+Environment=NODE_ENV=production
+Environment=HOST=127.0.0.1
+Environment=PORT=3001
+Environment=DATABASE_PATH=/var/www/boilerplate/app.sqlite
+ExecStart=/usr/bin/node /var/www/boilerplate/server/index.js
+Restart=on-failure
+RestartSec=5
+StateDirectory=boilerplate
+StateDirectoryMode=0750
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

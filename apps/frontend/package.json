@@ -8,10 +8,10 @@
         "typecheck": "vue-tsc --noEmit -p tsconfig.json"
     },
     "dependencies": {
-        "@boilerplate/shared": "workspace:*",
         "vue": "3.5.43"
     },
     "devDependencies": {
+        "@boilerplate/shared": "workspace:*",
         "@tailwindcss/vite": "4.3.3",
         "@vitejs/plugin-vue": "6.0.9",
         "tailwindcss": "4.3.3",

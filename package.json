@@ -10,7 +10,7 @@
         "apps/*"
     ],
     "scripts": {
-        "build": "yarn workspaces foreach --all --topological-dev run build",
+        "build": "node scripts/build.mjs",
         "dev": "yarn workspaces foreach --all --parallel --include apps/frontend --include apps/backend run dev",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",

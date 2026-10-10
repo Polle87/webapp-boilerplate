@@ -4,7 +4,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const backendDirectory = dirname(fileURLToPath(import.meta.url))
-const outputDirectory = resolve(backendDirectory, 'dist')
+const outputDirectory = resolve(backendDirectory, '../../dist/server')
 
 await rm(outputDirectory, { recursive: true, force: true })
 

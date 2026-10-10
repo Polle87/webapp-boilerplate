@@ -5,7 +5,7 @@ Boilerplate für neue Webanwendungen mit getrenntem Frontend und Backend. Das Re
 ## Technologien
 
 - **Frontend:** Vue 3, TypeScript, Vite 8 und Tailwind CSS 4
-- **Backend:** Node.js 24, Fastify 5 und TypeScript
+- **Backend:** Node.js 24, Fastify 5, TypeScript, Drizzle ORM und SQLite
 - **Gemeinsamer Code:** TypeScript-Workspace für geteilte Typen und Verträge
 - **Monorepo:** Yarn 4 Workspaces
 - **Qualität:** ESLint 10, Prettier 3 und TypeScript-Strict-Mode
@@ -43,23 +43,37 @@ Der Befehl startet Frontend und Backend parallel:
 
 Vite leitet Anfragen an `/api/*` an das Backend weiter und entfernt dabei das Präfix `/api`. Beispiel: `GET /api/health` wird zu `GET /health` auf dem Backend.
 
-Es werden derzeit keine Umgebungsvariablen benötigt. Das Backend kann mit `PORT` auf einem anderen Port gestartet werden; standardmäßig verwendet es `3001`.
+Beim ersten Backend-Start wird die SQLite-Datenbank unter `apps/backend/data/app.sqlite` erstellt und mit den versionierten Drizzle-Migrationen aktualisiert. `DATABASE_PATH` kann den Datenbankpfad überschreiben. Das Backend kann mit `PORT` auf einem anderen Port gestartet werden; standardmäßig verwendet es `3001`.
+
+Die Benutzertabelle speichert Discord-ähnliche Profildaten. Discord-Snowflakes werden als Text gespeichert, um den vollständigen 64-Bit-Wert verlustfrei abzubilden. Migrationen werden mit `yarn workspace @boilerplate/backend db:generate` erzeugt.
 
 ## Befehle
 
-| Befehl                 | Zweck                                             |
-| ---------------------- | ------------------------------------------------- |
-| `yarn dev`             | Frontend und Backend im Entwicklungsmodus starten |
-| `yarn build`           | Alle Workspaces bauen                             |
-| `yarn typecheck`       | TypeScript-Prüfung für alle Workspaces ausführen  |
-| `yarn lint`            | ESLint ausführen                                  |
-| `yarn lint:fix`        | Behebbare ESLint-Probleme automatisch korrigieren |
-| `yarn format`          | Formatierung mit Prettier prüfen                  |
-| `yarn format:fix`      | Dateien mit Prettier formatieren                  |
-| `yarn test`            | API- und End-to-End-Tests ausführen               |
-| `yarn test:api`        | API-Tests gegen das Backend ausführen             |
-| `yarn test:e2e`        | Browser- und API-Proxy-Tests ausführen            |
-| `yarn test:report`     | Gemeinsamen Playwright-HTML-Bericht öffnen        |
+| Befehl             | Zweck                                             |
+| ------------------ | ------------------------------------------------- |
+| `yarn dev`         | Frontend und Backend im Entwicklungsmodus starten |
+| `yarn build`       | Alle Workspaces bauen                             |
+| `yarn typecheck`   | TypeScript-Prüfung für alle Workspaces ausführen  |
+| `yarn lint`        | ESLint ausführen                                  |
+| `yarn lint:fix`    | Behebbare ESLint-Probleme automatisch korrigieren |
+| `yarn format`      | Formatierung mit Prettier prüfen                  |
+| `yarn format:fix`  | Dateien mit Prettier formatieren                  |
+| `yarn test`        | API- und End-to-End-Tests ausführen               |
+| `yarn test:api`    | API-Tests gegen das Backend ausführen             |
+| `yarn test:e2e`    | Browser- und API-Proxy-Tests ausführen            |
+| `yarn test:report` | Gemeinsamen Playwright-HTML-Bericht öffnen        |
+
+`yarn build` erzeugt das Deployment-Artefakt im Root-Ordner `dist/`:
+
+```text
+dist/
+  html/                        Frontend-Bundle
+  server/                      Backend-Bundle, Migrationen und package.json
+  boilerplate.service          systemd-Vorlage
+  boilerplate.xikun.de.conf    Apache2-VHost für Frontend und API-Proxy
+```
+
+Kopiere den Inhalt von `dist/` nach `/var/www/boilerplate/`; damit liegen Frontend und Backend gemeinsam unter diesem Deployment-Verzeichnis. Installiere dort die Backend-Runtime-Abhängigkeiten aus `server/package.json` (z. B. mit `npm install --omit=dev` im Verzeichnis `/var/www/boilerplate/server`). Die systemd-Vorlage verwendet `/var/www/boilerplate/server`; `NODE_ENV`, `HOST`, `PORT` und `DATABASE_PATH` werden direkt über die `Environment=`-Zeilen in `boilerplate.service` konfiguriert. Der Apache-VHost bedient das Frontend aus `/var/www/boilerplate/html` und proxyt `/api/` zum Backend. Die konfigurierten Let's-Encrypt-Zertifikatspfade müssen zum tatsächlich ausgestellten Zertifikat passen. Aktiviere dafür Apache-Module `ssl`, `headers`, `proxy`, `proxy_http`, `alias` und `dir`. Die SQLite-Datenbank bleibt separat unter `/var/lib/boilerplate`, damit sie bei Updates des Deployment-Verzeichnisses erhalten bleibt.
 
 Die Playwright-Konfiguration startet die jeweils benötigten Server automatisch. API-Tests verwenden Chromium nicht; für End-to-End-Tests wird Chromium benötigt. Testberichte und Ergebnisse landen unter `tests/reports/` beziehungsweise `tests/results/`.
 
